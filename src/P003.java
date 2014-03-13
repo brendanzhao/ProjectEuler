@@ -19,6 +19,6 @@ public class P003
 		}
 		
 		// 6857
-		System.out.println(String.format("Problem 2: %d", divisor));
+		System.out.println(String.format("Problem 3: %d", divisor));
 	}
 }
