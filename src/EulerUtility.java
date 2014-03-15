@@ -29,4 +29,14 @@ public class EulerUtility
 	{
 		return numberOne % numberTwo == 0 ? numberOne : numberOne * numberTwo / gcd(numberOne, numberTwo);
 	}
+	
+	public static int arithmeticSeries(int numberOfTerms, int firstTerm, int lastTerm)
+	{
+		return (int)((double)numberOfTerms / 2  * (firstTerm + lastTerm));
+	}
+	
+	public static int sumOfSquares(int numberOfTerms)
+	{
+		return (int)(((double)numberOfTerms / 6) * (numberOfTerms + 1) * (2 * numberOfTerms + 1));
+	}
 }
