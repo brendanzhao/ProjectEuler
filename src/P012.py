@@ -18,7 +18,9 @@ def get_num_divisors(num):
 
   return num_divisors
 
-for n in get_triangular_num():
-  if get_num_divisors(n) > 500:
-    print n
-    break
+def P012():
+  for n in get_triangular_num():
+    if get_num_divisors(n) > 500:
+      return n
+
+print P012()
