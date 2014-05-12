@@ -6,7 +6,7 @@ def prod(iterable):
 
 def P011():
   matrix = [[int(element) for element in line.split()]
-      for line in open('P011.txt', 'r')]
+      for line in open('txt/P011.txt', 'r')]
 
   length = 20
   m = -1
