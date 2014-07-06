@@ -4,9 +4,9 @@ def divisors(num):
 
   if num == sqrt * sqrt:
     divisors.append(sqrt)
-    sqrt -= 1;
+    sqrt -= 1
 
-  for i in xrange(2, sqrt):
+  for i in xrange(2, sqrt + 1):
     if not num % i:
       divisors += [i, (num / i)]
 
