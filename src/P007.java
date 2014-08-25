@@ -1,20 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
 public class P007
 {
-	
-	@Test
-	public void test()
+	public static void main(String[] args)
+	{
+		run();
+	}
+
+	public static void run()
 	{
 		int index;
 		int current = 1;
 		boolean currentIsPrime;
 		List<Integer> primes = new ArrayList<Integer>();
 		primes.add(2);
-		
+
 		while (primes.size() < 10001)
 		{
 			current += 2;
@@ -29,14 +30,13 @@ public class P007
 					break;
 				}
 			}
-			
+
 			if (currentIsPrime)
 			{
 				primes.add(current);
 			}
 		}
-		
-		// 104743
-		System.out.println(String.format("Problem 7: %d", current));
+
+		System.out.println(String.format("%d", current));
 	}
 }

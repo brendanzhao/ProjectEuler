@@ -1,27 +1,28 @@
-import org.junit.Test;
-
 public class P004
 {
-	@Test
-	public void test()
+	public static void main(String[] args)
+	{
+		run();
+	}
+
+	public static void run()
 	{
 		int maxPalindrome = -1;
 		int palindrome = -1;
-		
+
 		for (int i = 100; i < 1000; i++)
 		{
 			for (int j = i; j < 1000; j++)
 			{
 				palindrome = i * j;
-				
+
 				if (palindrome > maxPalindrome && EulerUtility.isPalindrome(palindrome))
 				{
 					maxPalindrome = palindrome;
 				}
 			}
 		}
-		
-		// 906609
-		System.out.println(String.format("Problem 4: %d", maxPalindrome));
+
+		System.out.println(String.format("%d", maxPalindrome));
 	}
 }

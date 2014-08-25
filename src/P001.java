@@ -1,12 +1,14 @@
-import org.junit.Test;
-
 public class P001
 {
-	@Test
-	public void runProblem()
+	public static void main(String[] args)
+	{
+		run();
+	}
+
+	public static void run()
 	{
 		int sum = 0;
-		
+
 		for (int i = 0; i < 1000; i++)
 		{
 			if (i % 3 == 0 || i % 5 == 0)
@@ -14,8 +16,7 @@ public class P001
 				sum += i;
 			}
 		}
-		
-		// 233168
-		System.out.println(String.format("Problem 1: %d", sum));
+
+		System.out.println(String.format("%d", sum));
 	}
 }

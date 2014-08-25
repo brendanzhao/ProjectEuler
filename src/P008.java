@@ -1,9 +1,11 @@
-import org.junit.Test;
-
 public class P008
 {
-	@Test
-	public void test()
+	public static void main(String[] args)
+	{
+		run();
+	}
+
+	public static void run()
 	{
 		int position = 0;
 		int product = 1;
@@ -28,31 +30,30 @@ public class P008
 				+ "84580156166097919133875499200524063689912560717606"
 				+ "05886116467109405077541002256983155200055935729725"
 				+ "71636269561882670428252483600823257530420752963450";
-		
+
 		while (position < number.length() - 4)
-		{	
+		{
 			if (number.charAt(position + 4) == '0')
 			{
 				position += 4;
-			} 
+			}
 			else
 			{
 				for (int i = 0; i < 5; i++)
 				{
 					product *= Character.getNumericValue(number.charAt(position + i));
 				}
-				
+
 				if (product > maxProduct)
 				{
 					maxProduct = product;
 				}
 			}
-			
+
 			product = 1;
 			position++;
 		}
-		
-		// 40824
-		System.out.println(String.format("Problem 8: %d", maxProduct));
+
+		System.out.println(String.format("%d", maxProduct));
 	}
 }
