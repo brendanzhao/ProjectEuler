@@ -5,29 +5,48 @@ import subprocess
 import sys
 from time import time
 
-def run_all_euler():
-  java_euler_regex = re.compile(r'^P[0-9]+\.java')
-  java_euler_files = [file_name for file_name in os.listdir('.') if java_euler_regex.match(file_name)]
-  java_euler_class_names = [file_name[:-5] for file_name in java_euler_files]
+def timer(f):
+  def wrap(*args):
+    start = time()
+    result = f(*args)
+    end = time()
+    print '%s: %s, solved in %0.3fms' % (args[1], result, (end - start) * 1000)
+  return wrap
 
-  python_euler_regex = re.compile(r'^P[0-9]+\.py')
-  python_euler_scripts = [file_name for file_name in os.listdir('.') if python_euler_regex.match(file_name)]
+def get_python_files():
+  euler_regex = re.compile(r'^P[0-9]+\.py')
+  euler_files = [file_name for file_name in os.listdir('.') if euler_regex.match(file_name)]
+  return euler_files
 
+def get_java_files():
+  euler_regex = re.compile(r'^P[0-9]+\.java')
+  euler_files = [file_name for file_name in os.listdir('.') if euler_regex.match(file_name)]
+  return euler_files
+
+def compile_java_files(java_files):
+  for java_file in java_files:
+    subprocess.call(['javac', java_file])
+
+def run_all_euler(java_files, python_files):
   print 'Evaluating all Euler problems!'
 
-  for java_euler_script, java_euler_class in itertools.izip(java_euler_files, java_euler_class_names):
-    subprocess.call(['javac', java_euler_script])
-    start = time()
-    result = subprocess.check_output(['java', java_euler_class]).strip()
-    end = time()
-    os.remove('%s.class' % java_euler_class)
-    print '%s: %s, solved in %0.3fms' % (java_euler_script, result, (end - start) * 1000)
+  for java_file in java_files:
+    run_script('java', java_file[:-5], java_file)
 
-  for python_euler_script in python_euler_scripts:
-    start = time()
-    result = subprocess.check_output(['python', python_euler_script]).strip()
-    end = time()
-    print '%s: %s, solved in %0.3fms' % (python_euler_script, result, (end - start) * 1000)
+  for python_file in python_files:
+    run_script('python', python_file, python_file)
+
+def remove_java_classes(java_files):
+  for java_file in java_files:
+    os.remove('%s.class' % java_file[:-5])
+
+@timer
+def run_script(command, *args):
+  return subprocess.check_output([command, args[0]]).strip()
 
 if __name__ == '__main__':
-  run_all_euler()
+  java_files = get_java_files()
+  python_files = get_python_files()
+  compile_java_files(java_files)
+  run_all_euler(java_files, python_files)
+  remove_java_classes(java_files)
